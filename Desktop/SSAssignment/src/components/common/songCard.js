@@ -4,7 +4,7 @@ import {Theme} from '../../theme';
 
 export const SongCard = ({item, onPress}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.cardWrapper}>
+    <TouchableOpacity onPress={() => onPress(item)} style={styles.cardWrapper}>
       {item.artworkUrl30 && (
         <Image
           source={{uri: item.artworkUrl30}}
@@ -13,12 +13,10 @@ export const SongCard = ({item, onPress}) => {
       )}
       <View style={{marginLeft: 10}}>
         {item.trackName && (
-          <Text style={{color: Theme.colors.dusk, marginTop: 8}}>
-            {item.trackName}
-          </Text>
+          <Text style={styles.trackText}>{item.trackName}</Text>
         )}
         {item.collectionArtistName && (
-          <Text style={{color: Theme.colors.dusk, marginTop: 5}}>
+          <Text style={styles.genreText}>
             {item.collectionArtistName}
             <Text style={{fontWeight: 'bold'}}>
               {`(${item.primaryGenreName})`}
@@ -37,5 +35,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingVertical: 20,
     paddingHorizontal: 24,
+  },
+  genreText: {
+    color: Theme.colors.dusk,
+    marginTop: 5,
+  },
+  trackText: {
+    color: Theme.colors.dusk,
+    marginTop: 8,
   },
 });
